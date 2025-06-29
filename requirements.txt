@@ -1,0 +1,6 @@
+zulip
+PyYAML
+python-dotenv
+requests
+websockets
+flask

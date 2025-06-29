@@ -1,0 +1,43 @@
+# Zulip Configuration
+zulip:
+  site: "https://v-odoo.zulipchat.com"
+  email: "YOUR_BOT_EMAIL"
+  api_key: "YOUR_API_KEY"
+  
+# Session Management
+sessions:
+  base_dir: "~/sessions"
+  default_shell: "/bin/zsh"
+  tmux_prefix: "claude-session-"
+  max_sessions: 10
+
+# Claude Code Integration  
+claude_code:
+  executable: "claude_code"
+  auto_context: true
+  project_files: ["CLAUDE.md", "README.md", "manage_odoo.md"]
+  timeout: 300
+
+# Odoo Development Integration
+odoo:
+  config_dir: "~/.odoo_config"
+  git_dir: "~/git"
+  projects:
+    odoo18: "/Users/dgoo2308/git/odoo18"
+
+# Web Interface
+web:
+  host: "localhost"
+  port: 8080
+  enabled: true
+
+# Security
+security:
+  allowed_commands: ["ls", "cd", "pwd", "git", "python", "pip", "claude_code"]
+  blocked_commands: ["rm -rf", "sudo", "chmod 777"]
+  sandbox_mode: false
+
+# Logging
+logging:
+  level: "INFO"
+  file: "~/sessions/claude-bot.log"
