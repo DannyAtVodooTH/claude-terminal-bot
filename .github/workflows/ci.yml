@@ -1,0 +1,38 @@
+name: CI Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install tmux
+      run: brew install tmux
+    
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r requirements.txt
+    
+    - name: Run tests
+      run: |
+        source venv/bin/activate
+        python test.py
+    
+    - name: Test management script
+      run: |
+        chmod +x manage_claude_bot.sh
+        ./manage_claude_bot.sh test
